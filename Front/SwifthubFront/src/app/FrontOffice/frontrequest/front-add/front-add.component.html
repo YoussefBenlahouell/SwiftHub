@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row justify-content-center">
+<div class="col-10">
+    <div class="card">
+        <h1 class="text-center">Student Complaint Management System</h1>
+
+        <form [formGroup]="requestform" (ngSubmit)="addRequest()">
+        <div class="p-fluid p-formgrid grid">
+            <div class="field col-10 md:col-4">
+                <label htmlFor="title">Object</label>
+                <input pInputText id="title" type="text" formControlName="title" />
+                <div *ngIf="requestform.get('title')?.invalid && requestform.get('title')?.touched" class="text-danger">
+                    Title is required </div>
+                </div>
+                
+                <div class="field col-12 md-6">
+                    <label htmlFor="category">Category</label>
+                    <select id="category" formControlName="categoryName">
+                      <option *ngFor="let category of categoryNames" [value]="category">{{ category }}</option>
+                    </select>
+                    <div *ngIf="requestform.get('categoryName')?.invalid && requestform.get('categoryName')?.touched"
+                      class="text-danger">
+                      Category is required
+                    </div>
+                  </div>
+                  
+            <div class="field col-12 md:col-6">
+                <textarea rows="5" cols="30" placeholder="Description" pInputTextarea formControlName="description"></textarea>
+                <div *ngIf="requestform.get('description')?.invalid && requestform.get('description')?.touched" class="text-danger">
+                    Description is required </div>          
+            </div>
+       
+      
+            <div class="field col-12" style="text-align: right;">
+  
+                <button pButton pRipple type="submit" label="Save" class="p-button-rounded p-button-success p-button-sm custom-button" ></button>
+                <button pButton pRipple type="button" label="Cancel" class="p-button-rounded p-button-danger p-button-sm custom-button" (click)="cancel()"   ></button>
+            </div>
+      
+          
+        </div>
+    </form>
+    </div>
+</div>
